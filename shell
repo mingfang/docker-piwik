@@ -1,0 +1,1 @@
+docker run -rm=true -P -i -t piwik /bin/bash
