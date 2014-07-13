@@ -1,1 +1,1 @@
-docker run -rm=true -P -i -t piwik /bin/bash
+docker run --rm -p 8080:80 -i -t piwik /bin/bash
