@@ -29,4 +29,8 @@ You have a couple different ways to start your new docker-piwik.  Either run it 
 
 Follow the [Piwik Installtion][0] intructions on how to setup your installation
 
+MySQL user is: piwik 
+No Password
+Piwik DB Name: Piwik
+
 [0]:http://piwik.org/docs/
