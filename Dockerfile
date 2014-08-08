@@ -24,11 +24,10 @@ RUN apt-get -y install mysql-client mysql-server apache2 libapache2-mod-php5 php
 RUN apt-get install -y php5-geoip php5 libgeoip-dev
 
 #Piwki
-RUN wget http://builds.piwik.org/latest.zip && \
-    unzip latest.zip && \
-    rm latest.zip
-RUN rm -rf /var/www/html && \
-    mv piwik /var/www/html
+RUN rm -fr /var/www/html && git clone --depth=1 https://github.com/piwik/piwik.git  /var/www/
+
+RUN mv /var/www/piwik /var/www/html
+    
 RUN chown -R www-data:www-data /var/www && \
     chmod -R 0755 /var/www/html/tmp
 
