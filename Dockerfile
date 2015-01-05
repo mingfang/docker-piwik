@@ -27,7 +27,8 @@ RUN apt-get install -y php5-geoip php5 libgeoip-dev
 RUN rm -fr /var/www/html && git clone --depth=1 https://github.com/piwik/piwik.git  /var/www/
 
 RUN mv /var/www/piwik /var/www/html
-    
+
+RUN mkdir /var/www/html/tmp
 RUN chown -R www-data:www-data /var/www && \
     chmod -R 0755 /var/www/html/tmp
 
