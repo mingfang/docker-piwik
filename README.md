@@ -27,7 +27,7 @@ Once the build is complete mysql will be running and ready for action
 
 You have a couple different ways to start your new docker-piwik.  Either run it with the obvious run script or shell script.  Once the docker-piwik is running open a browser your_ip_address:8080 to start the installation of piwik inside your docker.
 
-Follow the [Piwik Installtion][0] intructions on how to setup your installation
+Follow the [Piwik Installation][0] instructions on how to setup your installation
 
 MySQL user is: piwik 
 No Password
