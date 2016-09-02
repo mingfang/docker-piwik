@@ -1,22 +1,20 @@
 FROM ubuntu:14.04
- 
-ENV DEBIAN_FRONTEND noninteractive
+
+ENV DEBIAN_FRONTEND=noninteractive \
+    LANG=en_US.UTF-8 \
+    TERM=xterm
+RUN locale-gen en_US en_US.UTF-8
+RUN echo "export PS1='\e[1;31m\]\u@\h:\w\\$\[\e[0m\] '" >> /root/.bashrc
 RUN apt-get update
 
-#Runit
-RUN apt-get install -y runit 
-CMD /usr/sbin/runsvdir-start
+# Runit
+RUN apt-get install -y --no-install-recommends runit
+CMD export > /etc/envvars && /usr/sbin/runsvdir-start
+RUN echo 'export > /etc/envvars' >> /root/.bashrc
 
-#SSHD
-RUN apt-get install -y openssh-server && \
-    mkdir -p /var/run/sshd && \
-    echo 'root:root' |chpasswd
-RUN sed -i "s/session.*required.*pam_loginuid.so/#session    required     pam_loginuid.so/" /etc/pam.d/sshd
-RUN sed -i "s/PermitRootLogin without-password/#PermitRootLogin without-password/" /etc/ssh/sshd_config
+# Utilities
+RUN apt-get install -y --no-install-recommends vim less net-tools inetutils-ping wget curl git telnet nmap socat dnsutils netcat tree htop unzip sudo software-properties-common jq psmisc iproute
 
-#Utilities
-RUN apt-get install -y vim less net-tools inetutils-ping curl git telnet nmap socat dnsutils netcat tree htop unzip sudo software-properties-common
- 
 #Piwik Requirements http://piwik.org/docs/requirements/
 RUN apt-get -y install mysql-client mysql-server apache2 libapache2-mod-php5 php5-mysql php-apc php5-gd
 
@@ -32,8 +30,10 @@ RUN rm -rf /var/www/html && \
 RUN chown -R www-data:www-data /var/www && \
     chmod -R 0755 /var/www/html/tmp
 
-#Add runit services
-ADD sv /etc/service 
+# Add runit services
+COPY sv /etc/service 
+ARG BUILD_INFO
+LABEL BUILD_INFO=$BUILD_INFO
 
 #Init database
 RUN rm /etc/mysql/conf.d/mysqld_safe_syslog.cnf
