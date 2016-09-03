@@ -29,6 +29,8 @@ RUN rm -rf /var/www/html && \
     mv piwik /var/www/html
 RUN chown -R www-data:www-data /var/www && \
     chmod -R 0755 /var/www/html/tmp
+RUN mkdir -p /var/log/apache2 && \
+    chown -R www-data:www-data /var/log/apache2
 
 # Add runit services
 COPY sv /etc/service 
