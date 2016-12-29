@@ -1,1 +1,4 @@
-docker run --rm -p 8080:80 -i -t piwik /bin/bash
+#!/bin/bash
+source helper
+
+docker run -p 81:80 --rm -v `pwd`:/docker -it ${IMAGE} bash

@@ -5,4 +5,4 @@
 chown -R mysql:mysql /var/lib/mysql
 
 exec 2>&1
-exec /usr/bin/mysqld_safe
+exec /usr/bin/mysqld_safe --skip-syslog

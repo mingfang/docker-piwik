@@ -1,1 +1,4 @@
-docker run -d -p 8080:80 piwik 
+#!/bin/bash
+source helper
+
+docker run -d -t ${IMAGE}

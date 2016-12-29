@@ -1,0 +1,22 @@
+server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+
+	root /var/www/html;
+	index index.php;
+	server_name _;
+
+	location / {
+          try_files $uri /index.php?$query_string;
+	}
+
+	location ~ \.php$ {
+          fastcgi_split_path_info ^(.+\.php)(/.+)$;
+
+          fastcgi_keep_conn on;
+	  fastcgi_pass unix:/run/php/php7.0-fpm.sock;
+          fastcgi_index  index.php;
+          fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
+          include        fastcgi_params;
+	}
+}
