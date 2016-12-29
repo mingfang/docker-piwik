@@ -25,11 +25,10 @@ RUN apt-get install -y php-geoip libgeoip-dev
 #Piwki
 RUN wget http://builds.piwik.org/latest.zip && \
     unzip latest.zip && \
-    mv /piwik/* /var/www/html && \
-    rm -r /piwik && \
+    mv /piwik /var/www/html && \
     rm latest.zip && \
     chown -R www-data:www-data /var/www/html && \
-    chmod -R 0755 /var/www/html/tmp
+    chmod -R 0755 /var/www/html/piwik/tmp
 
 #Init database
 ADD mysql.ddl /mysql.ddl
