@@ -8,9 +8,9 @@ Ubuntu 14.04
 
 ##Building docker-piwik
 
-Clone the https://github.com/mingfang/docker-piwik.git to your target machine.  Change to the directory in which you cloned the git and run the build script.
+Clone the https://github.com/mingfang/docker-piwik.git to your target machine.  Change to the directory in which you cloned the git and run the Docker build command from the local directory.
 
-    ./build
+    docker build .
 
 The build script will install various software including:
 
